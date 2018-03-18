@@ -6,7 +6,8 @@ function setup(){
 		console.info("read click");
 		remoteme.sendUserSyncMessageRest(temperatureArduinoDeviceId,[],onResponse);
 	});
-	
+
+
 	remoteme = new RemoteMe({
 		automaticlyConnectWS: false,
 		automaticlyConnectWebRTC:false,

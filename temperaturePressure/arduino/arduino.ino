@@ -21,17 +21,11 @@ RemoteMe& remoteMe = RemoteMe::getInstance(TOKEN, DEVICE_ID);
 
 BME280 mySensor;
 
-void tick() {
+static bool toDB = true;
 
-	remoteMe.sendAddDataMessage(1, RemotemeStructures::_5S, 0, mySensor.readTempC());
-	remoteMe.sendAddDataMessage(2, RemotemeStructures::_5S, 0, mySensor.readFloatPressure());
-	remoteMe.sendAddDataMessage(3, RemotemeStructures::_5S, 0, mySensor.readFloatHumidity());
-}
+
 // the setup function runs once when you press reset or power the board
 void setup() {
-	pinMode(A0, OUTPUT);
-	digitalWrite(A0, HIGH);
-	delay(2000);
 	Serial.begin(9600);
 	Serial.println("started");
 	
@@ -45,7 +39,7 @@ void setup() {
 	//  0, Sleep mode
 	//  1 or 2, Forced mode
 	//  3, Normal mode
-	mySensor.settings.runMode = 2; //Forced mode
+	mySensor.settings.runMode = toDB?2:3; //Forced mode
 
 								   //tStandby can be:
 								   //  0, 0.5ms
@@ -97,8 +91,7 @@ void setup() {
 
 	remoteMe.sendRegisterDeviceMessage(DEVICE_NAME);
 
-	remoteMe.loop();
-	//flipper.attach(5, tick);
+	
 }
 
 
@@ -119,13 +112,17 @@ void onUserSyncMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t* data
 
 }
 
-int l = 0;
+
 void loop()
 {
 
 	remoteMe.loop();
-	tick();
-	digitalWrite(A0, LOW);
-	ESP.deepSleep(20e6);
+	if (toDB) {
+		remoteMe.sendAddDataMessage(1, RemotemeStructures::_1M, 0, mySensor.readTempC());
+		remoteMe.sendAddDataMessage(2, RemotemeStructures::_1M, 0, mySensor.readFloatPressure());
+		remoteMe.sendAddDataMessage(3, RemotemeStructures::_1M, 0, mySensor.readFloatHumidity());
+		ESP.deepSleep(50e6);//50s will be round to 1minute at server side anyway and if the same data for same time previous one will be overwritten
+	}
+	
 	//Serial.println(remoteMe.callRest("/api/rest/v1/time/modHour/14/"));
 }
