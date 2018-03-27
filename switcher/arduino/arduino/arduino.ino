@@ -1,8 +1,10 @@
-#define WIFI_NAME "ania24"
-#define WIFI_PASSWORD "tuchowkrakow"
+#define WIFI_NAME ""
+#define WIFI_PASSWORD ""
 #define DEVICE_ID 202
 #define DEVICE_NAME "switcher"
-#define TOKEN "~1_VLTq=uGG@M1Hp"
+//#define TOKEN "~1_VLTq=uGG@M1Hp"
+#define TOKEN "~252_hKGgAz8Y.hwl!"
+
 #define WEBPAGE_DEVICE_ID 1000
 
 #include <ArduinoHttpClient.h>
@@ -54,11 +56,11 @@ void setup() {
 	remoteMe.setUserMessageListener(onUserMessage);
 	remoteMe.setUserSyncMessageListener(onUserSyncMessage);
 
+	
 	remoteMe.setupTwoWayCommunication();
-
 	remoteMe.sendRegisterDeviceMessage(DEVICE_NAME);
 
-
+	
 	servo.attach(15); //D8
 
 	servo.write(20);
@@ -88,7 +90,7 @@ void onUserMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t *data) {
 	Serial.println(buffer);
 
 	uint16_t pos = 0;
-	uint8_t type = RemoteMeMessagesUtils::getByte(data, pos);
+	uint8_t type = RemoteMeMessagesUtils::getUint8(data, pos);
 
 	if (type == 1) {
 		String line1 = RemoteMeMessagesUtils::getString(data, pos);
@@ -99,10 +101,10 @@ void onUserMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t *data) {
 		lcd.print(line2);
 	}
 	else if (type == 2) {
-		servo.write(RemoteMeMessagesUtils::getByte(data, pos));
+		servo.write(RemoteMeMessagesUtils::getUint8(data, pos));
 	}
 	else if (type == 3) {
-		analogWrite(LEDpin, ((int)4)*RemoteMeMessagesUtils::getByte(data, pos));
+		analogWrite(LEDpin, RemoteMeMessagesUtils::getUint8(data, pos));
 	}
 }
 
@@ -112,8 +114,8 @@ void onUserMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t *data) {
 void sendChangeEvent(uint8_t type, uint8_t value) {
 	uint16_t pos = 0;
 	uint8_t *data = (uint8_t*)malloc(2);
-	RemoteMeMessagesUtils::putByte(data, pos, type);
-	RemoteMeMessagesUtils::putByte(data, pos, value);
+	RemoteMeMessagesUtils::putUint8(data, pos, type);
+	RemoteMeMessagesUtils::putUint8(data, pos, value);
 
 	char   buffer[25];
 	sprintf(buffer, "send message  %d %d", data[0], data[1]);
@@ -123,26 +125,25 @@ void sendChangeEvent(uint8_t type, uint8_t value) {
 
 
 uint16_t lastVoltage = 0;
-int32_t position = -999;
+
 
 int i = 0;
 void loop() {
 	remoteMe.loop();
 
-	int32_t newPosition;
-	newPosition = encoder.read();
-	if (newPosition != position) {
-		if (newPosition % 4 == 0) {
-			Serial.print("Left = ");
-			Serial.println(newPosition / 4);
+	int32_t position = encoder.read();
+	if (position % 4 == 0 && position != 0) {
+		Serial.print("Left = ");
+		Serial.println(position / 4);
 
-			sendChangeEvent(3, newPosition / 4);
-			//encoder.write(0);
-		}
-
-		position = newPosition;
-
+		sendChangeEvent(3, position / 4);
+		encoder.write(0);
+	
 	}
+
+
+
+
 
 
 	if (button.onPressed()) {
@@ -150,10 +151,10 @@ void loop() {
 		sendChangeEvent(2, 0);
 	}
 
-	
+
 	if (i++ > 10000) {//when we read analog to often esp8266 is disconecting its known issue :( https://github.com/esp8266/Arduino/issues/1634 //its run the code every 200ms
 		int currentPotentiometer = analogRead(analogPin);
-		if (abs(currentPotentiometer - lastVoltage) > 20) {
+		if (abs(currentPotentiometer - lastVoltage) > 10) {
 			Serial.println(currentPotentiometer);
 			lastVoltage = currentPotentiometer;
 			sendChangeEvent(1, currentPotentiometer / 4);
@@ -161,5 +162,5 @@ void loop() {
 		i = 0;
 		//Serial.println(millis());
 	}
-	
+
 }

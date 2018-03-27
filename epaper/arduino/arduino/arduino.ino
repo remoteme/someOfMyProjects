@@ -219,12 +219,12 @@ void loop() {
 
 		uint16_t index = 0;
 		for (uint8_t i = 0; i < 4; i++) {
-			uint8_t today = RemoteMeMessagesUtils::getByte(returnData, index);
-			uint8_t dayOfWeek = RemoteMeMessagesUtils::getByte(returnData, index);
-			uint8_t day = RemoteMeMessagesUtils::getByte(returnData, index);
-			uint8_t month = RemoteMeMessagesUtils::getByte(returnData, index);
-			int8_t temp = RemoteMeMessagesUtils::getSignedByte(returnData, index);
-			uint8_t icon = RemoteMeMessagesUtils::getByte(returnData, index);
+			uint8_t today = RemoteMeMessagesUtils::getUint8(returnData, index);
+			uint8_t dayOfWeek = RemoteMeMessagesUtils::getUint8(returnData, index);
+			uint8_t day = RemoteMeMessagesUtils::getUint8(returnData, index);
+			uint8_t month = RemoteMeMessagesUtils::getUint8(returnData, index);
+			int8_t temp = RemoteMeMessagesUtils::getInt8(returnData, index);
+			uint8_t icon = RemoteMeMessagesUtils::getUint8(returnData, index);
 
 			displayWeather(i,today,dayOfWeek,day,month,temp,icon);
 			Serial.println(day);
