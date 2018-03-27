@@ -2,8 +2,8 @@
 #define WIFI_PASSWORD ""
 #define DEVICE_ID 203
 #define DEVICE_NAME "diodeWithButtonArduino"
-#define TOKEN "~252_hKGgAz8Y.hwl!"
-//#define TOKEN "~1_VLTq=uGG@M1Hp"
+#define TOKEN ""
+
 
 #define WEBPAGE_DEVICE_ID 1001
 
@@ -14,12 +14,8 @@
 #include <ESP8266WiFiMulti.h>
 
 
-
 #include <RBD_Timer.h>  
 #include <RBD_Button.h> 
-
-
-
 
 
 uint8_t LEDpin = D5;
@@ -62,23 +58,20 @@ void onUserSyncMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t* data
 
 }
 
-//1 string to display
-//2 servo
-//3 diode
 void onUserMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t *data) {
-	onButtonPressed();
+	changeDiodeState();
 	
 }
 
 
 
-void onButtonPressed(   ) {
-	uint16_t returnDataSize = 1;
-
+void changeDiodeState(   ) {
+	
 	currentState= !currentState;
 
 	digitalWrite(LEDpin, currentState?HIGH:LOW);
 
+	uint16_t returnDataSize = 1;
 	uint16_t pos = 0;
 	uint8_t *data = (uint8_t*)malloc(returnDataSize);
 	RemoteMeMessagesUtils::putUint8(data, pos, currentState?1:0);
@@ -97,7 +90,7 @@ void loop() {
 
 
 	if (button.onPressed()) {
-		onButtonPressed();
+		changeDiodeState();
 	}
 
 
