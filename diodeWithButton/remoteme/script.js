@@ -14,24 +14,24 @@ function setup(){
 
 function onUserMessage(sender,data){
 	var data = new RemoteMeData(data);
-	$("#led").css("background-color",data.popUint8()==0?"white":"red");
+	changeDiode(data.popUint8())
+}
 
-
+function changeDiode(state){
+	$("#led").css("background-color",state==0?"white":"red");
 }
 
 function webSocketConnectionChange(state){
 
 	if (state==WebsocketConnectingStatusEnum.CONNECTED){
 		remoteme.sendUserSyncMessageWebSocket(arduinoId,[],function(data){
-			onUserMessage(arduinoId,data);
+			var data = new RemoteMeData(data);
+			changeDiode(data.popUint8());
 		});
 	}
 }
 
 function onLedClick(){
-
-
-
 	remoteme.sendUserMessageByFasterChannel (arduinoId,[]);
 
 }
