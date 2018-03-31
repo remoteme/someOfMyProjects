@@ -72,21 +72,17 @@ void changeDiodeState(   ) {
 	digitalWrite(LEDpin, currentState?HIGH:LOW);
 
 	uint16_t returnDataSize = 1;
-	uint8_t *data = (uint8_t*)malloc(returnDataSize);
-	
 	uint16_t pos = 0;
+	uint8_t *data = (uint8_t*)malloc(returnDataSize);
 	RemoteMeMessagesUtils::putUint8(data, pos, currentState?1:0);
 
 	remoteMe.sendUserMessage(WEBPAGE_DEVICE_ID, data, returnDataSize);
+
 }
-
-
 
 
 void loop() {
 	remoteMe.loop();
-
-
 	if (button.onPressed()) {
 		changeDiodeState();
 	}
