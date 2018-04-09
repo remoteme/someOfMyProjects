@@ -14,11 +14,11 @@
 
 #include <ESP8266WiFiMulti.h>
 
-#define WIFI_NAME "ania24"
-#define WIFI_PASSWORD "tuchowkrakow"
+#define WIFI_NAME ""
+#define WIFI_PASSWORD ""
 #define DEVICE_ID 205
-#define DEVICE_NAME "siren"
-#define TOKEN "~267_ZxoWtJ)0ph&2c"
+#define DEVICE_NAME "notificator"
+#define TOKEN ""
 
 #define DIODES_COUNT 16
 
@@ -72,6 +72,7 @@ void setup()
 
 	top.setup();
 	bottom.setup();
+  delay(100);
 	top.clear();
 	bottom.clear();
 }
