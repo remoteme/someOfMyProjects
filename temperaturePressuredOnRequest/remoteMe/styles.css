@@ -12,3 +12,6 @@ table td{
 table td.out{
     color:black;
 }
+button{
+    width: 100%;
+}

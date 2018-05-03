@@ -2,9 +2,7 @@ var remoteme;
 
 function setup(){
 
-	$('table').on('click', function() {
-		readDataNow();
-	});
+	
 
 
 	remoteme = new RemoteMe({
