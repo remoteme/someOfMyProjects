@@ -4,18 +4,17 @@
 #include "Wire.h"
 #include "SPI.h"
 
-#define WIFI_NAME ""
-#define WIFI_PASSWORD ""
+#define WIFI_NAME "ania24"
+#define WIFI_PASSWORD "tuchowkrakow"
 #define DEVICE_ID 204
 #define DEVICE_NAME "temperatureOnRequest"
-#define TOKEN ""
+#define TOKEN "~267_ZxoWtJ)0ph&2c"
 
 #include <ArduinoHttpClient.h>
 #include <RemoteMe.h>
 #include <ESP8266WiFi.h>
 
 #include <ESP8266WiFiMulti.h>
-
 
 
 ESP8266WiFiMulti WiFiMulti;
@@ -94,7 +93,7 @@ void onUserSyncMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t* data
 {
 	uint16_t pos = 0;
 
-	returnDataSize = 8*4*3;
+	returnDataSize = sizeOf(float32)*3;
 	returnData = (uint8_t*)malloc(returnDataSize);
 	
 

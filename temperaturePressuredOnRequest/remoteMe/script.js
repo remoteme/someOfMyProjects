@@ -19,12 +19,7 @@ function readDataNow(){
 	remoteme.sendUserSyncMessageWebSocket(temperatureArduinoDeviceId,[],onResponse);
 }
 
-function webSocketConnectionChange(state){
 
-	if (state==WebsocketConnectingStatusEnum.CONNECTED){
-		readDataNow();
-	}
-}
 function onResponse(output){
 	var data = new RemoteMeData(output);
 
@@ -38,6 +33,13 @@ function onResponse(output){
 	$("#hummOut").html(humm.toFixed(2)+" %");
 
 
+}
+
+function webSocketConnectionChange(state){
+
+	if (state==WebsocketConnectingStatusEnum.CONNECTED){
+		readDataNow();
+	}
 }
 
 

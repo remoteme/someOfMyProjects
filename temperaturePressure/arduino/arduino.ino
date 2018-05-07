@@ -1,128 +1,149 @@
-#include <Ticker.h>
+#define WIFI_NAME "ania24"
+#define WIFI_PASSWORD "tuchowkrakow"
+#define DEVICE_ID 2045
+#define DEVICE_NAME "sensor"
+#define TOKEN "~267_ZxoWtJ)0ph&2c"
+
+#define WEBPAGE_DEVICE_ID 1001
+
+
 #include <stdint.h>
 #include "SparkFunBME280.h"
 
 #include "Wire.h"
 #include "SPI.h"
 
-#include "secret.h"
+
 
 #include <ArduinoHttpClient.h>
 #include <RemoteMe.h>
 #include <ESP8266WiFi.h>
 
 #include <ESP8266WiFiMulti.h>
-#include <Ticker.h>
-
-Ticker flipper;
 
 ESP8266WiFiMulti WiFiMulti;
 RemoteMe& remoteMe = RemoteMe::getInstance(TOKEN, DEVICE_ID);
 
 BME280 mySensor;
 
-static bool toDB = true;
+#define powerPIN D5
 
+
+
+void sort(double a[], int size) {
+    for(int i=0; i<(size-1); i++) {
+        for(int o=0; o<(size-(i+1)); o++) {
+                if(a[o] > a[o+1]) {
+                    double t = a[o];
+                    a[o] = a[o+1];
+                    a[o+1] = t;
+                }
+        }
+    }
+}
+
+long timeAtStart;
 
 // the setup function runs once when you press reset or power the board
 void setup() {
+  timeAtStart=millis();
 	Serial.begin(9600);
+ while(!Serial){
+  ;
+  }
 	Serial.println("started");
+  pinMode(powerPIN, OUTPUT);
+  digitalWrite(powerPIN, HIGH);
+
+  
 	
-	mySensor.settings.commInterface = I2C_MODE;
-	mySensor.settings.I2CAddress = 0x76;
-
-
-	//***Operation settings*****************************//
-
-	//runMode can be:
-	//  0, Sleep mode
-	//  1 or 2, Forced mode
-	//  3, Normal mode
-	mySensor.settings.runMode = toDB?2:3; //Forced mode
-
-								   //tStandby can be:
-								   //  0, 0.5ms
-								   //  1, 62.5ms
-								   //  2, 125ms
-								   //  3, 250ms
-								   //  4, 500ms
-								   //  5, 1000ms
-								   //  6, 10ms
-								   //  7, 20ms
-	mySensor.settings.tStandby = 0;
-
-	//filter can be off or number of FIR coefficients to use:
-	//  0, filter off
-	//  1, coefficients = 2
-	//  2, coefficients = 4
-	//  3, coefficients = 8
-	//  4, coefficients = 16
-	mySensor.settings.filter = 0;
-
-	//tempOverSample can be:
-	//  0, skipped
-	//  1 through 5, oversampling *1, *2, *4, *8, *16 respectively
-	mySensor.settings.tempOverSample = 1;
-
-	//pressOverSample can be:
-	//  0, skipped
-	//  1 through 5, oversampling *1, *2, *4, *8, *16 respectively
-	mySensor.settings.pressOverSample = 1;
-
-	//humidOverSample can be:
-	//  0, skipped
-	//  1 through 5, oversampling *1, *2, *4, *8, *16 respectively
-	mySensor.settings.humidOverSample = 1;
-	delay(10);  //Make sure sensor had enough time to turn on. BME280 requires 2ms to start up.         Serial.begin(57600);
-
-	Serial.print("Starting BME280... result of .begin(): 0x");
-	//Calling .begin() causes the settings to be loaded
-	Serial.println(mySensor.begin(), HEX);
-
 	//--------
+  
 	WiFiMulti.addAP(WIFI_NAME, WIFI_PASSWORD);
 	while (WiFiMulti.run() != WL_CONNECTED) {
 		delay(100);
 	}
 
-	remoteMe.setUserSyncMessageListener(onUserSyncMessage);
-	remoteMe.setupTwoWayCommunication();
 
-	remoteMe.sendRegisterDeviceMessage(DEVICE_NAME);
+	  remoteMe.setupTwoWayCommunication();
+
+	  remoteMe.sendRegisterDeviceMessage(DEVICE_NAME);
+
+  
+
+    mySensor.settings.commInterface = I2C_MODE;
+    mySensor.settings.I2CAddress = 0x76;
+  
+  
+    //***Operation settings*****************************//
+  
+    //runMode can be:
+    //  0, Sleep mode
+    //  1 or 2, Forced mode
+    //  3, Normal mode
+    mySensor.settings.runMode = 3; //Forced mode
+  
+                     //tStandby can be:
+                     //  0, 0.5ms
+                     //  1, 62.5ms
+                     //  2, 125ms
+                     //  3, 250ms
+                     //  4, 500ms
+                     //  5, 1000ms
+                     //  6, 10ms
+                     //  7, 20ms
+    mySensor.settings.tStandby = 0;
+  
+   
+    mySensor.settings.filter = 4;
+  
+   
+    mySensor.settings.tempOverSample = 5;
+    mySensor.settings.pressOverSample = 5;
+    mySensor.settings.humidOverSample = 5;
+   
+   
+   mySensor.begin();
+ 
 
 	
 }
 
+void loop(){
+  
 
-void onUserSyncMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t* data, uint16_t &returnDataSize, uint8_t *&returnData)
-{
-	Serial.println("creating data");
-	uint16_t pos = 0;
+  double temp[10];
+  double pressure[10];
+  double humm[10];
+  for(int i=0;i<9;i++){
+    temp[i]= mySensor.readTempC();
+    pressure[i]= mySensor.readFloatPressure();
+    humm[i]= mySensor.readFloatHumidity();
+    delay(100);
+  }
 
-	returnDataSize = 8*4*3;
-	returnData = (uint8_t*)malloc(returnDataSize);
-	
+  sort(temp,10);
+  sort(humm,10);
+  sort(pressure,10);
 
-	RemoteMeMessagesUtils::putFloat(returnData,pos, (mySensor.readTempC()));
-	RemoteMeMessagesUtils::putFloat(returnData, pos, (mySensor.readFloatPressure() ));
-	RemoteMeMessagesUtils::putFloat(returnData, pos, (mySensor.readFloatHumidity() ));
-	
-	Serial.println("data created data");
 
+
+
+    remoteMe.sendAddDataMessage(1, RemotemeStructures::_5M, 0, temp[5]);
+    remoteMe.sendAddDataMessage(2, RemotemeStructures::_5M, 0, pressure[5]);
+    remoteMe.sendAddDataMessage(3, RemotemeStructures::_5M, 0,humm[5]);
+
+
+ 
+   
+    digitalWrite(powerPIN, LOW);
+
+    remoteMe.disconnect();
+  
+    ESP.deepSleep(36e8-(millis()-timeAtStart));
+
+  
 }
 
 
-void loop()
-{
 
-	remoteMe.loop();
-	if (toDB) {
-		remoteMe.sendAddDataMessage(1, RemotemeStructures::_1M, 0, mySensor.readTempC());
-		remoteMe.sendAddDataMessage(2, RemotemeStructures::_1M, 0, mySensor.readFloatPressure());
-		remoteMe.sendAddDataMessage(3, RemotemeStructures::_1M, 0, mySensor.readFloatHumidity());
-		ESP.deepSleep(50e6);//50s will be round to 1minute at server side anyway and if the same data for same time previous one will be overwritten
-	}
-	
-	//Serial.println(remoteMe.callRest("/api/rest/v1/time/modHour/14/"));
-}
