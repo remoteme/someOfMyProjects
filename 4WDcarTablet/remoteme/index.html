@@ -1,0 +1,40 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/remoteMe.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/messages.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/adapter.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/control.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/gauge.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/operationTimer.js"></script>
+
+    <script>
+
+		var thisDeviceId=####deviceId#;
+		var raspberryPiDeviceId=####raspberryPiDeviceId#;
+
+
+    </script>
+    <script src="script.js"></script>
+    <script src="touch.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+
+
+<body>
+
+
+
+<div style="height:100px;width:98%;border:1px solid gray;position:absolute;bottom:0" id="out">
+
+</div>
+<script>
+	setup();
+	new Touch();
+</script>
+</body>
+</html>
