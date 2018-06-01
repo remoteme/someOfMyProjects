@@ -93,7 +93,7 @@ void onUserSyncMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t* data
 {
 	uint16_t pos = 0;
 
-	returnDataSize = sizeOf(float32)*3;
+	returnDataSize = 12;//3 data each float so 4 bytes
 	returnData = (uint8_t*)malloc(returnDataSize);
 	
 

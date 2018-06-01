@@ -2,9 +2,6 @@ var remoteme;
 
 function setup(){
 
-	
-
-
 	remoteme = new RemoteMe({
 		automaticlyConnectWS: true,
 		automaticlyConnectWebRTC:false,
