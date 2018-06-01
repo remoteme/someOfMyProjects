@@ -1,0 +1,17 @@
+table{
+    font-size:40pt;
+    margin:20pt;
+
+}
+table td{
+    color:gray;
+    padding-right:50pt;
+
+}
+
+table td.out{
+    color:black;
+}
+button{
+    width: 100%;
+}

@@ -1,40 +1,57 @@
 var remoteme;
 
 function setup(){
+
 	
-	$('#readButton').on('click', function() {
-		console.info("read click");
-		remoteme.sendUserSyncMessageRest(temperatureArduinoDeviceId,[],onResponse);
-	});
 
 
 	remoteme = new RemoteMe({
-		automaticlyConnectWS: false,
+		automaticlyConnectWS: true,
 		automaticlyConnectWebRTC:false,
-		webSocketConnectionChange: undefined,
+		webSocketConnectionChange: webSocketConnectionChange,
 		webRTCConnectionChange: undefined,
 		mediaConstraints: {'mandatory': {'OfferToReceiveAudio': false, 'OfferToReceiveVideo': false}}
 	});
+	createChart();
 }
+
+
+function readDataNow(){
+	remoteme.sendUserSyncMessageWebSocket(temperatureArduinoDeviceId,[],onResponse);
+}
+
 
 function onResponse(output){
-	var dataView = new DataView(output);
+	var data = new RemoteMeData(output);
 
 
+	var temp = data.popFloat32();
 
-	var temp = dataView.getFloat32(0);
+	var pressure = data.popFloat32();
+	var humm = data.popFloat32();
+	$("#tempOut").html(temp.toFixed(2)+" C");
+	$("#pressOut").html((pressure/100).toFixed(2)+" hPa");
+	$("#hummOut").html(humm.toFixed(2)+" %");
 
-	var pressure = dataView.getFloat32(4);
-	var humm = dataView.getFloat32(8	);
-	$("#output").html(temp+"<br/>"+pressure+"<br/>"+humm);
-	console.info("reposne got "+output);
+
 }
+
+function webSocketConnectionChange(state){
+
+	if (state==WebsocketConnectingStatusEnum.CONNECTED){
+		readDataNow();
+	}
+}
+
 
 
 function createChart(){
 
+   var yestarday=moment().subtract(1, 'days').format("DD.MM.YYYY HH:mm");
+   var now=moment().format("DD.MM.YYYY HH:mm");
 
-	var url ="/api/rest/v1/data/get/dd.MM.yyyy HH:mm:ss/13.03.2018 23:25/13.05.2018 23:26/1,2,3/";
+
+	var url =`/api/rest/v1/data/get/dd.MM.yyyy HH:mm/${yestarday}/${now}/1,2,3/`;
 
 	$.get(url, function(data, status){
 
@@ -82,7 +99,7 @@ function createChart(){
 				anchor: "free",
 				overlaying: "y",
 				side: "left",
-				position: 0.03
+				position: 0.05
 			},
 			yaxis3: {
 
@@ -99,7 +116,4 @@ function createChart(){
 
 	});
 
-
-
 }
-
