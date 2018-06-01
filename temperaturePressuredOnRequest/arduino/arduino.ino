@@ -4,11 +4,11 @@
 #include "Wire.h"
 #include "SPI.h"
 
-#define WIFI_NAME "ania24"
-#define WIFI_PASSWORD "tuchowkrakow"
+#define WIFI_NAME ""
+#define WIFI_PASSWORD ""
 #define DEVICE_ID 204
 #define DEVICE_NAME "temperatureOnRequest"
-#define TOKEN "~267_ZxoWtJ)0ph&2c"
+#define TOKEN ""
 
 #include <ArduinoHttpClient.h>
 #include <RemoteMe.h>
