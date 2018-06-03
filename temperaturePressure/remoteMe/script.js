@@ -2,13 +2,13 @@ var remoteme;
 
 function setup(){
 
-	
+
 
 
 	remoteme = new RemoteMe({
-		automaticlyConnectWS: true,
+		automaticlyConnectWS: false,
 		automaticlyConnectWebRTC:false,
-		webSocketConnectionChange: webSocketConnectionChange,
+		webSocketConnectionChange: undefined,
 		webRTCConnectionChange: undefined,
 		mediaConstraints: {'mandatory': {'OfferToReceiveAudio': false, 'OfferToReceiveVideo': false}}
 	});
@@ -16,39 +16,15 @@ function setup(){
 }
 
 
-function readDataNow(){
-	remoteme.sendUserSyncMessageWebSocket(temperatureArduinoDeviceId,[],onResponse);
-}
 
 
-function onResponse(output){
-	var data = new RemoteMeData(output);
-
-
-	var temp = data.popFloat32();
-
-	var pressure = data.popFloat32();
-	var humm = data.popFloat32();
-	$("#tempOut").html(temp.toFixed(2)+" C");
-	$("#pressOut").html((pressure/100).toFixed(2)+" hPa");
-	$("#hummOut").html(humm.toFixed(2)+" %");
-
-
-}
-
-function webSocketConnectionChange(state){
-
-	if (state==WebsocketConnectingStatusEnum.CONNECTED){
-		readDataNow();
-	}
-}
 
 
 
 function createChart(){
 
-   var yestarday=moment().subtract(1, 'days').format("DD.MM.YYYY HH:mm");
-   var now=moment().format("DD.MM.YYYY HH:mm");
+	var yestarday=moment().subtract(1, 'days').format("DD.MM.YYYY HH:mm");
+	var now=moment().format("DD.MM.YYYY HH:mm");
 
 
 	var url =`/api/rest/v1/data/get/dd.MM.yyyy HH:mm/${yestarday}/${now}/1,2,3/`;
@@ -74,14 +50,14 @@ function createChart(){
 		var trace3 = {
 			x: data[2].datas,
 			y:  data[2].value,
-			name: "hummanity",
+			name: "humidity",
 			yaxis: "y3",
 			type: "scatter"
 		};
 
 		var data = [trace1, trace2, trace3];
 		var layout = {
-			title: "multiple y-axes example",
+			title: "temperature humidity pressure",
 			xaxis:{
 				categoryorder: "category ascending"
 			},

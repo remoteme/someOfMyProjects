@@ -1,8 +1,8 @@
-#define WIFI_NAME "ania24"
-#define WIFI_PASSWORD "tuchowkrakow"
+#define WIFI_NAME ""
+#define WIFI_PASSWORD ""
 #define DEVICE_ID 2045
 #define DEVICE_NAME "Weather Station"
-#define TOKEN "~29_0Cd.MIakGx,x!"
+#define TOKEN ""
 
 #define WEBPAGE_DEVICE_ID 1001
 
@@ -27,20 +27,7 @@ RemoteMe& remoteMe = RemoteMe::getInstance(TOKEN, DEVICE_ID);
 BME280 mySensor;
 
 
-void onUserSyncMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t* data, uint16_t &returnDataSize, uint8_t *&returnData)
-{
-  uint16_t pos = 0;
 
-  returnDataSize = 12;
-  returnData = (uint8_t*)malloc(returnDataSize);
-  
-
-  RemoteMeMessagesUtils::putFloat(returnData,pos, (mySensor.readTempC()));
-  RemoteMeMessagesUtils::putFloat(returnData, pos, (mySensor.readFloatPressure() ));
-  RemoteMeMessagesUtils::putFloat(returnData, pos, (mySensor.readFloatHumidity() ));
-  
-
-}
 
 
 void sort(double a[], int size) {
@@ -75,8 +62,7 @@ void setup() {
 	}
 
 
-	  remoteMe.setUserSyncMessageListener(onUserSyncMessage);
-    remoteMe.setupTwoWayCommunication();
+	  remoteMe.setupTwoWayCommunication();
 
 
 	  remoteMe.sendRegisterDeviceMessage(DEVICE_NAME);
@@ -122,10 +108,7 @@ void setup() {
 }
 
 void loop(){
-  static long lastRead=0;
-
-if (lastRead+1000l*60*5<millis()){
-  lastRead=millis();
+  
   
   double temp[10];
   double pressure[10];
@@ -149,13 +132,9 @@ if (lastRead+1000l*60*5<millis()){
     remoteMe.sendAddDataMessage(3, RemotemeStructures::_5M, 0,humm[5]);
 
 
-}
-   remoteMe.loop();
-    //digitalWrite(powerPIN, LOW);
-
-    //remoteMe.disconnect();
+    remoteMe.disconnect();
   
-    //ESP.deepSleep(36e8-(millis()-timeAtStart));
+    ESP.deepSleep(1e6*60*4);//4min
 
   
 }
