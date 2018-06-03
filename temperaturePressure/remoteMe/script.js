@@ -2,7 +2,7 @@ var remoteme;
 
 function setup(){
 
-
+	
 
 
 	remoteme = new RemoteMe({
@@ -23,8 +23,8 @@ function setup(){
 
 function createChart(){
 
-	var yestarday=moment().subtract(1, 'days').format("DD.MM.YYYY HH:mm");
-	var now=moment().format("DD.MM.YYYY HH:mm");
+   var yestarday=moment().subtract(1, 'days').format("DD.MM.YYYY HH:mm");
+   var now=moment().format("DD.MM.YYYY HH:mm");
 
 
 	var url =`/api/rest/v1/data/get/dd.MM.yyyy HH:mm/${yestarday}/${now}/1,2,3/`;
