@@ -1,8 +1,8 @@
-#define WIFI_NAME ""
-#define WIFI_PASSWORD ""
+#define WIFI_NAME "ania24"
+#define WIFI_PASSWORD "tuchowkrakow"
 #define DEVICE_ID 2045
 #define DEVICE_NAME "Weather Station"
-#define TOKEN ""
+#define TOKEN "~5335_Xy7sIFKNpSVj("
 
 #define WEBPAGE_DEVICE_ID 1001
 
@@ -47,25 +47,25 @@ void sort(double a[], int size) {
 // the setup function runs once when you press reset or power the board
 void setup() {
   
-	Serial.begin(9600);
+  Serial.begin(9600);
  while(!Serial){
   ;
   }
 
   
-	
-	//--------
   
-	WiFiMulti.addAP(WIFI_NAME, WIFI_PASSWORD);
-	while (WiFiMulti.run() != WL_CONNECTED) {
-		delay(100);
-	}
+  //--------
+  
+  WiFiMulti.addAP(WIFI_NAME, WIFI_PASSWORD);
+  while (WiFiMulti.run() != WL_CONNECTED) {
+    delay(100);
+  }
 
 
-	  remoteMe.setupTwoWayCommunication();
+    remoteMe.setupTwoWayCommunication();
 
 
-	  remoteMe.sendRegisterDeviceMessage(DEVICE_NAME);
+    remoteMe.sendRegisterDeviceMessage(DEVICE_NAME);
 
   
 
@@ -104,7 +104,7 @@ void setup() {
    mySensor.begin();
  
 
-	
+  
 }
 
 void loop(){
@@ -137,6 +137,4 @@ void loop(){
 
   
 }
-
-
 

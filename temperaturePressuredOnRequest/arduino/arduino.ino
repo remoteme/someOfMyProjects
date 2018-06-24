@@ -101,7 +101,6 @@ void onUserSyncMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t* data
 	RemoteMeMessagesUtils::putFloat(returnData, pos, (mySensor.readFloatPressure() ));
 	RemoteMeMessagesUtils::putFloat(returnData, pos, (mySensor.readFloatHumidity() ));
 	
-
 }
 
 
