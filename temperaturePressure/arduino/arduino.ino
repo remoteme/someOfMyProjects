@@ -1,5 +1,5 @@
-#define WIFI_NAME "ania24"
-#define WIFI_PASSWORD "tuchowkrakow"
+#define WIFI_NAME ""
+#define WIFI_PASSWORD ""
 #define DEVICE_ID 2045
 #define DEVICE_NAME "Weather Station"
 #define TOKEN "~5335_Xy7sIFKNpSVj("
