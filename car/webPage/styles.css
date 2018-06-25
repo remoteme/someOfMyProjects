@@ -1,0 +1,46 @@
+
+
+
+.sliderContainer{
+    border:1px solid #c5c5c5;
+    padding:10px;
+    border-radius: 10px;
+    margin:10px;
+}
+.sliderContainer .slider{
+    float: left;
+    width: calc(100% - 560px);
+    margin-top: 10px;
+    margin-left: 30px;
+    margin-right: 10px;
+}
+.sliderContainer .spinner {
+    float:left;
+    width:150px
+}
+.sliderContainer .mode {
+    float:left;
+    width:150px
+}
+
+
+#controls{
+    float:right;
+    width:350px;
+}
+
+#videoContainer{
+    float:left;
+    width: calc(100% - 350px);
+    height:100%;
+    background-color: #cccccc;
+    position: relative;
+}
+
+#videoContainer video{
+    height:100%;
+    width:100%;
+}
+
+
+
