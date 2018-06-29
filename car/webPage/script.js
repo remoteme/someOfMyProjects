@@ -21,7 +21,7 @@ var cameraData={
 
 xAxeCenter= 600;
 xAxeRange=200;
-yAxeCenter=530;
+yAxeCenter=520;
 yAxeRange=200;
 
 
@@ -74,14 +74,16 @@ function setupComponents(){
 
 
 
-	speedControll=new Control(-255,255,3,function(value){
+	speedControll=new Control(-255,255,5,function(value){
 		speedmeter.setValue(value*255);
 		carData.speed=Math.round(value*255);
 		sendMotor();
 	});
+	speedControll.idleWait=0;
+	speedControll.freeAccelerate=400;
+	speedControll.accelerate=400;
 
-
-	turn=new Control(-255,255,3,function(value){
+	turn=new Control(-255,255,2,function(value){
 		carData.turn=Math.round(value*255);
 		turnMeter.setValue(value*255);
 		sendMotor();
@@ -183,18 +185,26 @@ function sendCamera(){
 }
 
 
+function getMode(speed){
+	if (speed==0){
+		return 1;
+	}else{
+		return speed>0?2:3;
+	}
+}
 function sendMotorNow(){
 
 	console.info(carData);
 	console.info(cameraPosition.pos_x);
 
 
+	console.info("sending ");
 
 	var ret = new RemoteMeData(7);
 
 	ret.putByte(1);//mode 1  motors
 
-	ret.putShort(carData.speed<0?2:3);
+	ret.putShort(getMode(carData.speed));
 	ret.putShort(Math.abs(carData.speed));
 						//600
 	ret.putShort( carData.turn/255.0*200+400);//400 center

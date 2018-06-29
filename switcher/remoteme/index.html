@@ -1,0 +1,77 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css" integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js" integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+
+
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/remoteMe_1_03.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/remoteMeMessages_1_02.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/adapter.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/control.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/gauge.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/operationTimer.js"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css" crossorigin="anonymous">
+
+    <script>
+
+		var thisDeviceId=####deviceId#;
+		var raspberryPiDeviceId=####raspberryPiDeviceId#;
+		var switcherArduinoDeviceId=202;
+
+    </script>
+    <script src="script.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+
+<div class="alert alert-primary buttonClicks" style="margin:20px;" role="alert">
+    encoder: <div id ='encoderOutput' style="display:inline">0</div>
+</div>
+
+<div class="alert alert-primary buttonClicks" style="margin:20px;" role="alert">
+    Button clicks: <div id ='buttonClickOutput'style="display:inline">0</div>
+</div>
+
+<div class="progress" id="potentiometr" style="margin:20px;height:20px">
+    <div class="progress-bar" role="progressbar" style="width: 25%;"  aria-valuemin="0" aria-valuemax="256">
+        Potentiometr
+    </div>
+</div>
+
+
+
+
+<div style="margin:20px;width:calc( 100% - 40px )"  >
+<input style="width:100%" id="servoSlider" data-slider-id='servoSlider' type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0"/>
+</div>
+
+<div style="margin:20px;width:calc( 100% - 40px )"  >
+    <input style="width:100%" id="ledSlider" data-slider-id='ledSlider' type="text" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="0"/>
+</div>
+
+
+<textarea style="width:200px;height:80px;background-color: blue;color:white;font-family: Consolas; overflow-y: hidden ;margin:20px;size:15pt" id="lcdDisplay"></textarea>
+
+</div>
+
+
+
+<script>
+	setup();
+</script>
+</body>
+</html>
