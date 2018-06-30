@@ -1,7 +1,7 @@
 import logging
 import socket
 import struct
-
+import time
 import sys;
 import os;
 
@@ -28,14 +28,15 @@ remoteMe = None
 
 pwm = None;
 
-motorAIn1 = 25  # GPIO25
-motorAIn2 = 8  # GPIO8
+motorAIn1 = 8  # GPIO25
+motorAIn2 = 25  # GPIO8
 
+motorBIn1 = 24  # 24
+motorBIn2 = 23  # 23
 
+motors = [[motorAIn1, motorAIn2], [motorBIn1, motorBIn2]]
 
-motor = [motorAIn1, motorAIn2]
-
-motorPWM = 14
+motorsPWM = [14,15]
 turnPWM = 3
 
 def onUserSyncMessage(senderDeviceId, data):
@@ -43,21 +44,21 @@ def onUserSyncMessage(senderDeviceId, data):
 
 
 def setMotor( mode, speed):
-    if mode == 1:
-        motorSoftStop()
-    elif mode == 2:
+    motorSoftStop()
+
+    time.sleep(0.02)
+
+    if mode == 2:
         motorForward()
     elif mode == 3:
         motorBackward()
 
-    pwm.set_pwm(motorPWM, 0, speed)
-
+    pwm.set_pwm(motorsPWM[0], 0, speed)
+    pwm.set_pwm(motorsPWM[1], 0, speed)
 
 def onUserMessage(senderDeviceId, data):
     global pwm
     data = struct.unpack('>Bhhh', data)
-
-
 
 
     if data[0] == 1:
@@ -69,7 +70,7 @@ def onUserMessage(senderDeviceId, data):
 
         pwm.set_pwm(turnPWM, 0, turn)
 
-        print(turn)
+
     elif data[0] == 2:
         pwm.set_pwm(1, 0, data[1])
         pwm.set_pwm(0, 0, data[2])
@@ -85,24 +86,28 @@ def setupPins():
     GPIO.setmode(GPIO.BCM)  # Broadcom pin-numbering scheme
 
 
-    for pinId in motor:
-        GPIO.setup(pinId, GPIO.OUT)
+    for motor in motors:
+        for pinId in motor:
+            GPIO.setup(pinId, GPIO.OUT)
 
 
 def motorForward():
-    GPIO.output(motor[0], GPIO.LOW)
-    GPIO.output(motor[1], GPIO.HIGH)
-
+    GPIO.output(motors[0][0], GPIO.LOW)
+    GPIO.output(motors[0][1], GPIO.HIGH)
+    GPIO.output(motors[1][0], GPIO.LOW)
+    GPIO.output(motors[1][1], GPIO.HIGH)
 
 def motorBackward():
-    GPIO.output(motor[0], GPIO.HIGH)
-    GPIO.output(motor[1], GPIO.LOW)
-
+    GPIO.output(motors[0][0], GPIO.HIGH)
+    GPIO.output(motors[0][1], GPIO.LOW)
+    GPIO.output(motors[1][0], GPIO.HIGH)
+    GPIO.output(motors[1][1], GPIO.LOW)
 
 def motorSoftStop():
-    GPIO.output(motor[0], GPIO.LOW)
-    GPIO.output(motor[1], GPIO.LOW)
-
+    GPIO.output(motors[0][0], GPIO.LOW)
+    GPIO.output(motors[0][1], GPIO.LOW)
+    GPIO.output(motors[1][0], GPIO.LOW)
+    GPIO.output(motors[1][1], GPIO.LOW)
 
 try:
 
