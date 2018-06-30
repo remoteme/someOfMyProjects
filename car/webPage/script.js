@@ -14,6 +14,11 @@ var carData={
 	"speed":0,
 	"turn":0,
 }
+wheelDataCar={
+	"speed":0,
+	"turn":0,
+}
+
 var cameraData={
 	"posX":0,
 	"posY":0,
@@ -21,9 +26,63 @@ var cameraData={
 
 xAxeCenter= 600;
 xAxeRange=200;
-yAxeCenter=520;
+yAxeCenter=480;
 yAxeRange=200;
 
+function setupGamePad(){
+	window.addEventListener("gamepadconnected", function(e) {
+		console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
+			e.gamepad.index, e.gamepad.id,
+			e.gamepad.buttons.length, e.gamepad.axes.length);
+			setInterval(gameLoop, 100);
+	});
+}
+
+
+function gameLoop() {
+	var gamepads = navigator.getGamepads ? navigator.getGamepads() : (navigator.webkitGetGamepads ? navigator.webkitGetGamepads : []);
+	if (!gamepads) {
+		return;
+	}
+
+	var prevSpeed=wheelDataCar.speed;
+	var prevturn=wheelDataCar.turn;
+
+	var gp = gamepads[0];
+
+	var speed=Math.round((-(gp.axes[2]-1)/2)*100)/100;
+	var breakV=Math.round((-(gp.axes[1]-1)/2)*100)/100;
+	speed=Math.pow(speed,2.5);
+	breakV=Math.pow(breakV,2.5);
+
+	if (speed>0){
+		wheelDataCar.speed=speed*255;
+	}else if (breakV>0){
+		wheelDataCar.speed=-breakV*255;
+	}else{
+		wheelDataCar.speed=0;
+	}
+
+	if (gp.axes[5]<0.9){
+		speed=0;
+	}
+
+
+
+	wheelDataCar.turn=Math.round(gp.axes[0]*255);
+
+	if (prevSpeed!=wheelDataCar.speed || prevturn!=wheelDataCar.turn){
+		carData.speed=wheelDataCar.speed;
+		carData.turn=wheelDataCar.turn;
+		speedmeter.setValue(carData.speed);
+		turnMeter.setValue(carData.turn);
+
+		sendMotor();
+	}
+
+
+
+}
 
 function setupKeyboard(){
 	$(document).keydown(function(e){
@@ -83,7 +142,7 @@ function setupComponents(){
 	speedControll.freeAccelerate=400;
 	speedControll.accelerate=400;
 
-	turn=new Control(-255,255,2,function(value){
+	turn=new Control(-255,255,3,function(value){
 		carData.turn=Math.round(value*255);
 		turnMeter.setValue(value*255);
 		sendMotor();
@@ -95,7 +154,7 @@ function setupComponents(){
 
 
 	setupKeyboard();
-
+	setupGamePad();
 
 	$("#remoteVideo").mousemove( function( event ) {
 		var video = $("#remoteVideo");
@@ -168,9 +227,9 @@ counter=0;
 
 function sendMotor(){
 	if  (remoteme.isWebRTCConnected()){
-		ot.defaultDelay=200;
+		ot.defaultDelay=150;
 	}else{
-		ot.defaultDelay=300;
+		ot.defaultDelay=200;
 	}
 	ot.execute(sendMotorNow)
 }
@@ -189,7 +248,7 @@ function getMode(speed){
 	if (speed==0){
 		return 1;
 	}else{
-		return speed>0?2:3;
+		return speed<0?2:3;
 	}
 }
 function sendMotorNow(){
@@ -207,7 +266,7 @@ function sendMotorNow(){
 	ret.putShort(getMode(carData.speed));
 	ret.putShort(Math.abs(carData.speed));
 						//600
-	ret.putShort( carData.turn/255.0*200+400);//400 center
+	ret.putShort( carData.turn/255.0*200+375);//400 center
 						//200 turn left
 
 
