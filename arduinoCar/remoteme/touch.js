@@ -5,8 +5,8 @@ class Touch{
 	addStyle(){
 		var style = document.createElement('style');
 		style.type = 'text/css';
-		style.innerHTML = '.steer{ position:absolute; opacity: 0.5; width:80px; height:80px; border-radius: 80px; border:1px solid gray; top:calc(100% /2 - 80px);}' +
-			'#steer{left:calc(50% - 40px)  } ' ;
+		style.innerHTML = '.steer{ position:absolute; opacity: 0.5; width:60px; height:60px; border-radius: 60px; border:1px solid gray; top:calc(100% /2 - 80px);}' +
+			'#steer{left:calc(50% - 30px)  } ' ;
 		document.getElementsByTagName('head')[0].appendChild(style);
 
 	}

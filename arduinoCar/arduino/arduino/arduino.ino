@@ -1,8 +1,8 @@
 #define WIFI_NAME "ania24"
 #define WIFI_PASSWORD "tuchowkrakow"
-#define DEVICE_ID 205
+#define DEVICE_ID 1001
 #define DEVICE_NAME "my arduino "
-#define TOKEN "~1_VLTq=uGG@M1Hp"
+#define TOKEN "~29_K7IjJMzhUJ@(u"
 
 #include "SingleRing.h"
 #include <Adafruit_NeoPixel.h>

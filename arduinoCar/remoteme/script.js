@@ -54,21 +54,24 @@ function setup(){
 }
 
 function onMove(x,y){
+	var height=$(window).height();
+	var width=$(window).width();
+	var divider=Math.min(height,width)/3.5;
+	console.info(divider);
+	carController.setTurn(-x/divider);
+	carController.setSpeed(y/divider);
 
-	carController.setTurn(-x/400);
-	carController.setSpeed(y/500);
-	var center=$(window).height()/2;
 	carController.compute();
 
 
-	var leftHeight = (carController.getLeftSideSpeed()*center/2);
-	var rightHeight = (carController.getRightSideSpeed()*center/2);
+	var leftHeight = (carController.getLeftSideSpeed()*height/4);
+	var rightHeight = (carController.getRightSideSpeed()*height/4);
 
 	$('#leftArrow').css('height',Math.abs(leftHeight)+"px");
-	$('#leftArrow').css('top',(center) -(leftHeight>0?leftHeight:0)+"px");
+	$('#leftArrow').css('top',(height/2) -(leftHeight>0?leftHeight:0)+"px");
 
 	$('#rightArrow').css('height',Math.abs(rightHeight)+"px");
-	$('#rightArrow').css('top',(center) -(rightHeight>0?rightHeight:0)+"px");
+	$('#rightArrow').css('top',(height/2) -(rightHeight>0?rightHeight:0)+"px");
 	ot.execute(sendMotor);
 
 }
