@@ -1,0 +1,44 @@
+.statusButton{
+    float:right;
+    padding:20px;
+    width:100%;
+}
+.sendingComponent{
+   width:100%;
+   padding-left:10px;
+    padding-right:10px;
+
+}
+.sendingComponent button{
+    float:right;
+    width:180px;
+}
+.sendingComponent input{
+    float:left;
+    width: calc(100% - 210px);
+}
+#webSocketState{
+    float:right;
+}
+#directWebSocketConnection{
+    float:right;
+}
+
+.lightDropDown{
+    position:absolute;
+    bottom:20px;
+    left:20px;
+
+}
+
+.arrow{
+    width:5px;
+    height:0px;
+
+    background-color: red;
+    position:absolute;
+}
+
+.dropdown-menu div{
+    cursor: pointer;
+}

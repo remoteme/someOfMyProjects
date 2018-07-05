@@ -1,0 +1,85 @@
+<html>
+<head>
+    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"
+            crossorigin="anonymous"></script>
+
+    <script src="//cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.4/all/gauge.min.js"></script>
+
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css"
+          crossorigin="anonymous">
+
+
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/remoteMe_1_04.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/remoteMeApiRest_1_03.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/remoteMeMessages_1_02.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/adapter.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/control.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/gauge.js"></script>
+    <script src="https://cdn.rawgit.com/remoteme/webPageTemplates/master/base/operationTimer.js"></script>
+    <script src="carController4WD.js"></script>
+   <script src="touch.js"></script>
+
+
+    <script>
+
+		var thisDeviceId=####deviceId#;
+		var arduinoDeviceId=####arduinoDeviceId#;
+
+
+    </script>
+    <script src="script.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+<div class="statusButton">
+    <button type="button" class="btn btn-secondary" id="webSocketState">Web Socket</button>
+    <button type="button" class="btn btn-secondary" id="directWebSocketConnection">Direct WebSocket</button>
+    <div style="float:left" id="out">
+
+    </div>
+</div>
+
+
+<div class="arrow" id="leftArrow" style="left:0px;top:100px"></div>
+<div class="arrow" id="rightArrow" style="right:00px;top:100px"></div>
+
+<div class="sendingComponent">
+    <input class="form-control" type="text" id="hexToSend" value="0 1 1 2 3 5 8 13 21"> </input>
+    <button type="button" class="btn btn-light" id="sendToArduino" >Send to Arduino</button>
+</div>
+
+<div class="dropdown lightDropDown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Dropdown button
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <div class="dropdown-item lightModeButton" mode="0" >Off</div>
+        <div class="dropdown-item lightModeButton" mode="23" >Rider red</div>
+        <div class="dropdown-item lightModeButton" mode="24" >Rider blue</div>
+        <div class="dropdown-item lightModeButton" mode="25" >Rider red fast</div>
+        <div class="dropdown-item lightModeButton" mode="8" >Police blue</div>
+        <div class="dropdown-item lightModeButton" mode="15" >Green blink</div>
+        <div class="dropdown-item lightModeButton" mode="14" >Slow blue</div>
+    </div>
+</div>
+
+<script>
+	setup();
+</script>
+</body>
+</html>
