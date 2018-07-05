@@ -27,12 +27,7 @@ function setup(){
 
 	});
 
-	$('#sendToArduino').on('click', function() {
-		var notFormatted = $('#hexToSend').val();
-		console.info(notFormatted);
-		remoteme.sendUserMessageByFasterChannel(arduinoDeviceId,notFormatted.split(' ').map(Number));
 
-	});
 
 	$('.lightModeButton').on('click',function(event){
 		var mode = parseInt($(this).attr("mode"));
