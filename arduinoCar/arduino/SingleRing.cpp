@@ -74,8 +74,8 @@ void SingleRing::setMode(int m) {
 	case 20:setConfiguration(5, 50, 0, 0, 0, -20); break;// blink revert red
 	case 21:setConfiguration(5, 50, 10, 0, 0, 20); break;//blink standard orange
 	case 22:setConfiguration(5, 50, 10, 0, 0, -20); break;// blink revert orange
-  case 23:setConfiguration(4, 200, 0, 0, 7, 4); break;//rider red
-  case 24:setConfiguration(4, 0, 0, 200, 7, 4); break;//rider blue
+  case 23:setConfiguration(4, 200, 0, 0, 7, 7); break;//rider red
+  case 24:setConfiguration(4, 0, 0, 200, 7, 7); break;//rider blue
   case 25:setConfiguration(4, 200, 0, 0, 7, 1); break;//rider red fast
 	default: setConfiguration(0, 0, 100, 0, 8, 1); break;//off =0
 	}

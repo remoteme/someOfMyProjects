@@ -1,8 +1,8 @@
-#define WIFI_NAME "ania24"
-#define WIFI_PASSWORD "tuchowkrakow"
+#define WIFI_NAME ""
+#define WIFI_PASSWORD ""
 #define DEVICE_ID 1001
-#define DEVICE_NAME "my arduino "
-#define TOKEN "~29_K7IjJMzhUJ@(u"
+#define DEVICE_NAME "arduino car"
+#define TOKEN ""
 
 #include "SingleRing.h"
 #include <Adafruit_NeoPixel.h>
@@ -140,11 +140,8 @@ void setup()
 
 
 void onUserMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t *data) {
-  Serial.println("on user message");
   uint16_t pos=0;
-   
   uint8_t type=RemoteMeMessagesUtils::getUint8(data, pos);
-    Serial.println(type);
   if (type==1){//motor
  
     
