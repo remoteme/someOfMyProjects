@@ -1,8 +1,8 @@
-#define WIFI_NAME ""
-#define WIFI_PASSWORD ""
+#define WIFI_NAME "ania24"
+#define WIFI_PASSWORD "tuchowkrakow"
 #define DEVICE_ID 203
 #define DEVICE_NAME "diodeWithButtonArduino"
-#define TOKEN ""
+#define TOKEN "~155_D49LDj@aBFhK."
 
 
 #define WEBPAGE_DEVICE_ID 1001
