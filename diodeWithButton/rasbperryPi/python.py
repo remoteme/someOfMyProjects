@@ -27,9 +27,13 @@ remoteMe=None
 
 
 def onUserSyncMessage(senderDeviceId,data):
+    global light
     logger.info("on user SYNC message got from {} of length {}".format(senderDeviceId,len(data)))
 
-    return "Hello Sync "+remotemeMessages.getStringFromArray(data)
+    dataTemp=[0];
+    if light:
+        dataTemp[0]=1
+    return dataTemp
 
 def changeButtonState(channel):
     global light,remoteMe
