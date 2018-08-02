@@ -1,0 +1,35 @@
+.statusButton{
+    float:right;
+    padding:20px;
+}
+
+
+.led{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 10px;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+.ledGreen{
+    border: 2px solid #00b51c;
+}
+
+.ledGreen.on{
+    background-color: #00f91f;
+}
+
+
+
+textarea{
+    height:300px;
+    wifth:85%;
+}
+
+.exampleMessages{
+    white-space: pre;
+    border:1px solid gray;
+    font-family: Consolas, monaco, monospace; font-size: 15px;
+}

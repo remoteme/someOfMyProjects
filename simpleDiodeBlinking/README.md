@@ -1,0 +1,1 @@
+Just sends message to arduino by diffrent chanels
