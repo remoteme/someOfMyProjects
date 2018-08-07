@@ -141,9 +141,16 @@ void setup()
 
 
 void onUserMessage(uint16_t senderDeviceId, uint16_t dataSize, uint8_t *data) {
- if (data[0]==5){
- driveForward();
- }
+  uint16_t pos=0;
+  uint8_t type=RemoteMeMessagesUtils::getUint8(data, pos);
+  if (type==1){//motor
+ 
+    
+    motorA(RemoteMeMessagesUtils::getInt16(data, pos));
+    motorB(RemoteMeMessagesUtils::getInt16(data, pos));
+  }else if (type==2){//light
+     top.setMode(RemoteMeMessagesUtils::getInt16(data, pos));
+  }
 }
 
 void loop()
