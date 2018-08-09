@@ -1,45 +1,74 @@
 var remoteme;
+function is_touch_device() {
+	var prefixes = ' -webkit- -moz- -o- -ms- '.split(' ');
+	var mq = function(query) {
+		return window.matchMedia(query).matches;
+	}
 
+	if (('ontouchstart' in window) || window.DocumentTouch && document instanceof DocumentTouch) {
+		return true;
+	}
+
+	// include the 'heartz' as a way to have a non matching MQ to help terminate the join
+	// https://git.io/vznFH
+	var query = ['(', prefixes.join('touch-enabled),('), 'heartz', ')'].join('');
+	return mq(query);
+}
 function setup() {
 	remoteme = new RemoteMe();
 
-	remoteme.getObservers().observeIntegerBoolean("pam", function (value, val2) {
-		console.info(value + " " + val2);
+	remoteme.getObservers().observeBoolean("forward", function (value) {
+		$("#forward").css("background-color",value?"green":"white");
+	});
+	remoteme.getObservers().observeBoolean("back", function (value) {
+		$("#back").css("background-color",value?"green":"white");
+	});
+	remoteme.getObservers().observeBoolean("left", function (value) {
+		$("#left").css("background-color",value?"green":"white");
 	});
 
-	remoteme.getObservers().observeText("pam2", function (value) {
-		console.info(value);
+	remoteme.getObservers().observeBoolean("right", function (value) {
+		$("#right").css("background-color",value?"green":"white");
 	});
 
-	remoteme.getObservers().observeDouble("pam2", function (value) {
-		console.info(value);
+	var startEventType = 'mousedown',
+		endEventType   = 'mouseup';
+
+	if (is_touch_device()) {
+		startEventType = 'touchstart';
+		endEventType   = 'touchend';
+	}
+
+	$('#forward').on(startEventType, function () {
+		remoteme.getObservers().setBoolean("forward",  true);
 	});
 
-	remoteme.getObservers().observeSmallInteger2("pam", function (value, val2) {
-		console.info(value + " " + val2);
+	$('#back').on(startEventType, function () {
+		remoteme.getObservers().setBoolean("back",  true);
 	});
 
-	remoteme.getObservers().observeSmallInteger3("pam", function (value, val2, val3) {
-		console.info(value + " " + val2 + " " + val3);
+	$('#left').on(startEventType, function () {
+		remoteme.getObservers().setBoolean("left",  true);
 	});
 
-
-	$('.b1').on('click', function () {
-		remoteme.getObservers().setIntegerBoolean("pam", 1235, true);
+	$('#right').on(startEventType, function () {
+		remoteme.getObservers().setBoolean("right",  true);
 	});
 
-	$('.b2').on('click', function () {
-		remoteme.getObservers().setText("pam2", "maciek2")
+	$('#forward').on(endEventType, function () {
+		remoteme.getObservers().setBoolean("forward",  false);
 	});
 
-	$('.b3').on('click', function () {
-		remoteme.getObservers().setDouble("pam2", 123.456);
+	$('#back').on(endEventType, function () {
+		remoteme.getObservers().setBoolean("back",  false);
 	});
-	$('.b4').on('click', function () {
-		remoteme.getObservers().setSmallInteger2("pam", 123, 456);
+
+	$('#left').on(endEventType, function () {
+		remoteme.getObservers().setBoolean("left",  false);
 	});
-	$('.b5').on('click', function () {
-		remoteme.getObservers().setSmallInteger3("pam", 123, 45, -67);
+
+	$('#right').on(endEventType, function () {
+		remoteme.getObservers().setBoolean("right",  false);
 	});
 
 

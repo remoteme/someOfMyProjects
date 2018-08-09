@@ -1,0 +1,32 @@
+.parent{
+    height:0;width:100%;padding-bottom:100%;background-color: #f4f4f4;
+    position:absolute;
+}
+.roudButton{
+    width: 30%;
+    height: 30%;
+    border:1px solid gray;
+    border-radius: 400px;
+    cursor: pointer;
+    margin:10px;
+    position:absolute;
+}
+
+#forward{
+    top:0px;
+    left:33.33%;
+}
+
+#back{
+    bottom:0px;
+    left:33.33%;
+}
+
+#left{
+    bottom:33.33%;
+    left:0px;
+}
+#right{
+    bottom:33.33%;
+    right:0px;
+}

@@ -12,27 +12,17 @@
         </script>
         <script src="script.js"></script>
 
-        <style>
-            .led{
-                width: 100px;
-                height: 100px;
-                float: left;
-                margin: 10px;
-                border-radius: 100px;
-                cursor: pointer;
-                border: 2px solid #00b51c;
-            }
-            .led.on{
-                background-color: #00f91f;
-            }
-        </style>
+        <link rel="stylesheet" type="text/css" href="styles.css">
     </head>
     <body>
-        <button class="b1">integer boolean</button>
-        <button class="b2">text </button>
-        <button class="b3">double </button>
-        <button class="b4">small integer 2</button>
-        <button class="b5">small integer 2</button>
+
+    <div class="parent">
+        <div id="back" class="roudButton"></div>
+        <div id="forward" class="roudButton"></div>
+        <div id="left" class="roudButton"></div>
+        <div id="right" class="roudButton"></div>
+    </div>
+
         <script>
             setup();
         </script>
