@@ -1,0 +1,95 @@
+15.07 17:50 application  INFO     >>> My Python application
+15.07 17:50 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+15.07 17:50 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+15.07 18:16 remoteMe.RemoteMe DEBUG    got user sender deviceId:2 datalen:9 data: 00 01 01 02 03 05 08 0d 15  
+15.07 18:16 application  INFO     on onUserMessage from senderId 2  length 9
+15.07 18:17 remoteMe.RemoteMe DEBUG    got user sender deviceId:2 datalen:1 data: 00  
+15.07 18:17 application  INFO     on onUserMessage from senderId 2  length 1
+15.07 18:17 remoteMe.RemoteMe DEBUG    got user sender deviceId:2 datalen:6 data: 5a 5b 5c 5d 5e 00  
+15.07 18:17 application  INFO     on onUserMessage from senderId 2  length 6
+15.07 18:18 remoteMe.RemoteMe DEBUG    got user sender deviceId:2 datalen:2 data: 32 33  
+15.07 18:18 application  INFO     on onUserMessage from senderId 2  length 2
+15.07 18:18 remoteMe.RemoteMe INFO     expected size of bytes 4 data length:16
+15.07 18:18 remoteMe.RemoteMe DEBUG    got user sync sender senderDeviceId:200 messageId:19400368120544 datalen:4 data: 6d 61 63 69  
+15.07 18:18 application  INFO     on user SYNC message got from 200 of length 4
+15.07 18:18 remoteMe.RemoteMe INFO     expected size of bytes 4 data length:16
+15.07 18:18 remoteMe.RemoteMe DEBUG    got user sync sender senderDeviceId:200 messageId:34892314357071 datalen:4 data: 6d 61 63 69  
+15.07 18:18 application  INFO     on user SYNC message got from 200 of length 4
+15.07 18:18 remoteMe.RemoteMe INFO     expected size of bytes 4 data length:16
+15.07 18:18 remoteMe.RemoteMe DEBUG    got user sync sender senderDeviceId:200 messageId:38074885977895 datalen:4 data: 6d 61 63 69  
+15.07 18:18 application  INFO     on user SYNC message got from 200 of length 4
+15.07 18:18 remoteMe.RemoteMe INFO     expected size of bytes 4 data length:16
+15.07 18:18 remoteMe.RemoteMe DEBUG    got user sync sender senderDeviceId:200 messageId:40750650580017 datalen:4 data: 6d 61 63 69  
+15.07 18:18 application  INFO     on user SYNC message got from 200 of length 4
+15.07 18:18 remoteMe.RemoteMe INFO     expected size of bytes 4 data length:16
+15.07 18:18 remoteMe.RemoteMe DEBUG    got user sync sender senderDeviceId:200 messageId:43220256216192 datalen:4 data: 6d 61 63 69  
+15.07 18:18 application  INFO     on user SYNC message got from 200 of length 4
+15.07 18:18 remoteMe.RemoteMe INFO     expected size of bytes 4 data length:16
+15.07 18:18 remoteMe.RemoteMe DEBUG    got user sync sender senderDeviceId:200 messageId:45840186685834 datalen:4 data: 6d 61 63 69  
+15.07 18:18 application  INFO     on user SYNC message got from 200 of length 4
+15.07 18:18 remoteMe.RemoteMe INFO     expected size of bytes 4 data length:16
+15.07 18:18 remoteMe.RemoteMe DEBUG    got user sync sender senderDeviceId:200 messageId:63599876500122 datalen:4 data: 6d 61 63 69  
+15.07 18:18 application  INFO     on user SYNC message got from 200 of length 4
+15.07 18:18 remoteMe.RemoteMe INFO     expected size of bytes 4 data length:16
+15.07 18:18 remoteMe.RemoteMe DEBUG    got user sync sender senderDeviceId:200 messageId:67216239945352 datalen:4 data: 6d 61 63 69  
+15.07 18:18 application  INFO     on user SYNC message got from 200 of length 4
+15.07 18:21 application  INFO     >>> My Python application
+15.07 18:21 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+15.07 18:21 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+15.07 18:22 remoteMe.RemoteMe DEBUG    got user sender deviceId:2 datalen:9 data: 52 65 6d 6f 74 65 4d 65 00  
+15.07 18:22 application  INFO     on onUserMessage from senderId 2  length 9
+15.07 18:22 remoteMe.RemoteMe DEBUG    got user sender deviceId:2 datalen:8 data: 52 65 6d 6f 74 65 4d 65  
+15.07 18:22 application  INFO     on onUserMessage from senderId 2  length 8
+15.07 18:23 remoteMe.RemoteMe DEBUG    got user sender deviceId:2 datalen:8 data: 52 65 6d 6f 74 65 4d 65  
+15.07 18:23 application  INFO     on onUserMessage from senderId 2  length 8
+15.07 18:34 application  INFO     >>> My Python application
+15.07 18:34 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+15.07 18:34 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+15.07 18:39 application  INFO     >>> My Python application
+15.07 18:39 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+15.07 18:39 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+15.07 18:43 application  INFO     >>> My Python application
+15.07 18:43 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+15.07 18:43 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+15.07 18:47 remoteMe.RemoteMe INFO     expected size of bytes 10 data length:22
+15.07 18:47 remoteMe.RemoteMe DEBUG    got user sync sender senderDeviceId:200 messageId:146415437143205 datalen:10 data: 52 65 6d 6f 74 65 6d 65 20 21  
+15.07 18:47 application  INFO     on user SYNC message got from 200 of length 10
+15.07 19:13 application  INFO     >>> My Python application
+15.07 19:13 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+15.07 19:13 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+15.07 19:44 application  INFO     >>> My Python application
+15.07 19:44 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+15.07 19:44 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+15.07 20:15 application  INFO     >>> My Python application
+15.07 20:15 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+15.07 20:15 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+15.07 20:46 application  INFO     >>> My Python application
+15.07 20:46 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+15.07 20:46 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+15.07 21:17 application  INFO     >>> My Python application
+15.07 21:17 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+15.07 21:17 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+16.07 18:35 application  INFO     >>> My Python application
+16.07 18:35 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+16.07 18:35 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+16.07 18:54 application  INFO     >>> My Python application
+16.07 18:54 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+16.07 18:54 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+16.07 18:58 application  INFO     >>> My Python application
+16.07 18:58 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+16.07 18:58 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+16.07 19:02 application  INFO     >>> My Python application
+16.07 19:02 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+16.07 19:02 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+16.07 19:32 application  INFO     >>> My Python application
+16.07 19:32 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+16.07 19:32 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+16.07 20:05 application  INFO     >>> My Python application
+16.07 20:05 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+16.07 20:05 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+16.07 20:17 application  INFO     >>> My Python application
+16.07 20:17 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+16.07 20:17 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script
+16.07 20:18 application  INFO     >>> My Python application
+16.07 20:18 remoteMe.RemoteMe INFO     creating an instance of RemoteMe
+16.07 20:18 remoteMe.RemoteMe INFO     starting remogemeMe port:2329 parentId:200 ownId:201 name:python script

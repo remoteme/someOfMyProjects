@@ -1,0 +1,47 @@
+.chips{
+    height: 16px;
+    float: left;
+    margin: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    border:1px solid gray;
+    padding:8px;
+    font-weight: bold;
+    color:black;
+}
+
+.chips.on{
+    background-color: green;
+    color:white;
+}
+
+
+.led{
+    width: 100px;
+    height: 100px;
+    float: left;
+    margin: 10px;
+    border-radius: 100px;
+    cursor: pointer;
+}
+
+
+.ledRed{
+    border: 2px solid #b53030;
+}
+
+.ledRed.on{
+    background-color: red;
+}
+
+
+.ledGreen{
+    border: 2px solid #00b51c;
+}
+
+.ledGreen.on{
+    background-color: #00f91f;
+}
+
+
+

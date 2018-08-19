@@ -1,0 +1,44 @@
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <script src="https://remoteme.org/public/libs/remoteme/remoteMe.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/remoteMeMessages.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/adapter.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/control.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/gauge.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/operationTimer.js"></script>
+
+    <script>
+
+		var thisDeviceId=####deviceId#;
+		var raspberryPiDeviceId=####raspberryPiDeviceId#;
+		var pythonScriptDeviceId=-1;
+
+    </script>
+    <script src="script.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+<button id="websocketButton" onClick="webSocketClicked()">websocket</button>
+<button id="webRtcButton" onClick="webRtcClicked()">webrtc</button>
+
+<div style="clear:both"></div>
+
+
+<div class="led ledRed" ledId=0 onclick="onLedClick(this)"></div>
+<div class="led ledGreen" ledId=1 onclick="onLedClick(this)"></div>
+
+
+<div style="clear:both"></div>
+
+
+<script>
+	setup();
+</script>
+</body>
+</html>
