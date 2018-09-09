@@ -1,0 +1,49 @@
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+
+
+    <!--color picker -->
+
+
+
+    <script src="https://remoteme.org/public/libs/remoteme/iro/iro_min.js"></script>
+
+    <link rel="stylesheet" href="https://remoteme.org/public/libs/remoteme/getmdl-select/getmdl-select_min.css">
+
+    <script src="https://remoteme.org/public/libs/remoteme/getmdl-select/getmdl-select_min.js"></script>
+    <!--color picker end -->
+
+    <script src="//cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.4/all/gauge.min.js"></script>
+
+
+    <script src="https://remoteme.org/public/libs/remoteme/remoteMe.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/variables.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/remoteMeMessages.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/operationTimer.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/remoteMeComponents.js"></script>
+    <link rel="stylesheet" href="https://remoteme.org/public/libs/remoteme/remoteMeComponents.css">
+
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+<script>
+	var thisDeviceId=####deviceId#;
+</script>
+
+<body>
+<variable type="BOOLEAN" name="singleLed"  label="Led" component="switcher"></variable>
+<variable type="SMALL_INTEGER_3" name="rgbLed"  label="RGB Led" component="color" max="1023"></variable>
+
+</body>
+</html>
