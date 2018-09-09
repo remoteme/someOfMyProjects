@@ -1,0 +1,91 @@
+<html>
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/css/bootstrap.min.css"
+          integrity="sha384-Zug+QiDoJOrZ5t4lssLdxGhVrurbmBWopoEl+M6BdEfwnCJZtKxi1KgxUyJq13dy" crossorigin="anonymous">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.3/js/bootstrap.min.js"
+            integrity="sha384-a5N7Y/aK3qNeh15eJKGWxsqtnX/wWdSZSKp+81YjTmS15nvnvxKHuzaWwXHDli+4"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"></script>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/bootstrap-slider.min.js"
+            crossorigin="anonymous"></script>
+
+    <script src="//cdn.rawgit.com/Mikhus/canvas-gauges/gh-pages/download/2.1.4/all/gauge.min.js"></script>
+
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-slider/10.0.0/css/bootstrap-slider.css"
+          crossorigin="anonymous">
+
+
+    <script src="https://remoteme.org/public/libs/remoteme/remoteMe.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/remoteMeApiRest.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/remoteMeMessages.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/adapter.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/control.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/gauge.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/operationTimer.js"></script>
+    <script src="https://remoteme.org/public/libs/remoteme/carController4WD.js"></script>
+
+
+
+    <script>
+
+		var thisDeviceId=####deviceId#;
+		var arduinoDeviceId=####arduinoDeviceId#;
+
+
+    </script>
+    <script src="wsScript.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+
+
+<p id="token"></p><br/>
+<p id="deviceId"></p>
+
+send by rest
+ <input type="checkbox" id="restSend" />
+<div class="sendingComponent">
+    <button type="button" class="btn btn-light" id="register" >Register</button>
+    <button type="button" class="btn btn-light" id="connect" >Connect websocket</button>
+    <button type="button" class="btn btn-light" id="createVariables" >Create observers</button>
+    <button type="button" class="btn btn-light" id="observeVariables" >Observe variables</button>
+    <button type="button" class="btn btn-light" id="rename" >Rename button3 to button35</button>
+    <button type="button" class="btn btn-light" id="delete" >Delete</button>
+    <button type="button" class="btn btn-light" id="button1True" >button1 to true</button>
+    <button type="button" class="btn btn-light" id="button1False" >button1 to false</button>
+    <button type="button" class="btn btn-light" id="gamePad" >Gamepad</button>
+    <button type="button" class="btn btn-light" id="sendPersistence" >Resend state of observe variables</button>
+    <button type="button" class="btn btn-light" id="disconnect" >Disconnect websocket</button>
+    <div style="clear: both"/>
+</div>
+<br/>
+Incomming messages:
+<textarea class="form-control" id="incommingMessage"  ></textarea>
+
+
+
+
+<script>
+	setup();
+</script>
+</body>
+</html>
