@@ -48,11 +48,11 @@ function webSocketLocalConnectionChange(deviceId,state){
 	$("#directWebSocketConnection").removeClass('btn-success');
 	$("#directWebSocketConnection").removeClass('btn-danger');
 
-	if (state==WebsocketConnectingStatusEnum.CONNECTED) {
+	if (state==ConnectingStatusEnum.CONNECTED) {
 		$("#directWebSocketConnection").addClass('btn-success');
-	}else if (state==WebsocketConnectingStatusEnum.ERROR){
+	}else if (state==ConnectingStatusEnum.ERROR){
 		$("#directWebSocketConnection").addClass('btn-danger');
-	}else if (state==WebsocketConnectingStatusEnum.DISCONNECTED){
+	}else if (state==ConnectingStatusEnum.DISCONNECTED){
 		$("#directWebSocketConnection").addClass('btn-secondary');
 	}
 }
@@ -62,13 +62,13 @@ function webSocketConnectionChange(state){
 	$("#webSocketState").removeClass('btn-success');
 	$("#webSocketState").removeClass('btn-danger');
 
-	if (state==WebsocketConnectingStatusEnum.CONNECTED) {
+	if (state==ConnectingStatusEnum.CONNECTED) {
 		$("#webSocketState").addClass('btn-success');
 
 
-	}else if (state==WebsocketConnectingStatusEnum.ERROR){
+	}else if (state==ConnectingStatusEnum.ERROR){
 		$("#webSocketState").addClass('btn-danger');
-	}else if (state==WebsocketConnectingStatusEnum.DISCONNECTED ){
+	}else if (state==ConnectingStatusEnum.DISCONNECTED ){
 		$("#webSocketState").addClass('btn-secondary');
 	}
 }

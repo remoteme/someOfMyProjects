@@ -16,7 +16,7 @@ function setup(){
 
 function webSocketConnectionChange(state){
 
-	if (state==WebsocketConnectingStatusEnum.CONNECTED){
+	if (state==ConnectingStatusEnum.CONNECTED){
 		alert("connected to RemotemeApp :)")
 	}
 }

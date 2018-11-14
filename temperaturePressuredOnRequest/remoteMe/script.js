@@ -34,7 +34,7 @@ function onResponse(output){
 
 function webSocketConnectionChange(state){
 
-	if (state==WebsocketConnectingStatusEnum.CONNECTED){
+	if (state==ConnectingStatusEnum.CONNECTED){
 		readDataNow();
 	}
 }

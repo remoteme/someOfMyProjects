@@ -152,10 +152,10 @@ function setMotorNow(motorId) {
 
 function webSocketConnectionChange(state){
 	console.info("webosvcket change "+state);
-	if (state==WebsocketConnectingStatusEnum.CONNECTED){
+	if (state==ConnectingStatusEnum.CONNECTED){
 		$("#webSocketState").removeClass('btn-secondary');
 		$("#webSocketState").addClass('btn-success');
-	}else if (state==WebsocketConnectingStatusEnum.DISCONNECTED  || state==WebsocketConnectingStatusEnum.ERROR ){
+	}else if (state==ConnectingStatusEnum.DISCONNECTED  || state==ConnectingStatusEnum.ERROR ){
 		$("#webSocketState").removeClass('btn-success');
 		$("#webSocketState").addClass('btn-secondary');
 	}

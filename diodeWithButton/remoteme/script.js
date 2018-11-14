@@ -23,7 +23,7 @@ function changeDiode(state){
 
 function webSocketConnectionChange(state){
 
-	if (state==WebsocketConnectingStatusEnum.CONNECTED){
+	if (state==ConnectingStatusEnum.CONNECTED){
 		remoteme.sendUserSyncMessageWebSocket(arduinoId,[],function(data){
 			var data = new RemoteMeData(data);
 			changeDiode(data.popUint8());

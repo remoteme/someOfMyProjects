@@ -21,7 +21,7 @@ function webSocketConnectionChange(state){
 }
 
 function webRtcConnectionChange(state){
-	if (state==WebrtcConnectingStatusEnum.CONNECTED){
+	if (state==ConnectingStatusEnum.CONNECTED){
 		$("#webRTCState").removeClass('btn-secondary');
 		$("#webRTCState").addClass('btn-success');
 
@@ -31,28 +31,28 @@ function webRtcConnectionChange(state){
 		$("#webRTCState").addClass('btn-secondary');
 	}
 
-	if (state==WebrtcConnectingStatusEnum.CONNECTED) {
+	if (state==ConnectingStatusEnum.CONNECTED) {
 		$("#webRTCStatusWindow").modal("show");
 		$("#webRTCStatusWindow").find(".statusText").html("View Connected");
 		setTimeout(function(){
 			$("#webRTCStatusWindow").modal("hide");
 		},1500);
-	}else if (state==WebrtcConnectingStatusEnum.CONNECTING) {
+	}else if (state==ConnectingStatusEnum.CONNECTING) {
 		$("#webRTCStatusWindow").modal("show");
 		$("#webRTCStatusWindow").find(".statusText").html("View Connecting");
-	}else if (state==WebrtcConnectingStatusEnum.DISCONNECTING) {
+	}else if (state==ConnectingStatusEnum.DISCONNECTING) {
 		$("#webRTCStatusWindow").modal("show");
 		$("#webRTCStatusWindow").find(".statusText").html("View Disconnecting");
-	}else if (state==WebrtcConnectingStatusEnum.CHECKING) {
+	}else if (state==ConnectingStatusEnum.CHECKING) {
 		$("#webRTCStatusWindow").modal("show");
 		$("#webRTCStatusWindow").find(".statusText").html("View Checking");
-	}else if (state==WebrtcConnectingStatusEnum.DISCONNECTED) {
+	}else if (state==ConnectingStatusEnum.DISCONNECTED) {
 		$("#webRTCStatusWindow").modal("show");
 		$("#webRTCStatusWindow").find(".statusText").html("View Disconnected");
 		setTimeout(function(){
 			$("#webRTCStatusWindow").modal("hide");
 		},1500);
-	}else if (state==WebrtcConnectingStatusEnum.FAILED) {
+	}else if (state==ConnectingStatusEnum.FAILED) {
 		$("#webRTCStatusWindow").modal("show");
 		$("#webRTCStatusWindow").find(".statusText").html("View Failed");
 		setTimeout(function(){

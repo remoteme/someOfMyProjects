@@ -42,11 +42,11 @@ function onLedClick(thiz){
 
 
 function webSocketConnectionChange(state){
-	if (state==WebsocketConnectingStatusEnum.CONNECTED){
+	if (state==ConnectingStatusEnum.CONNECTED){
 		$("#websocketButton").html("Websocket - connected");
-	}else if (state==WebsocketConnectingStatusEnum.DISCONNECTED){
+	}else if (state==ConnectingStatusEnum.DISCONNECTED){
 		$("#websocketButton").html("Websocket - disconnected");
-	}else if (state==WebsocketConnectingStatusEnum.ERROR){
+	}else if (state==ConnectingStatusEnum.ERROR){
 		$("#websocketButton").html("Websocket - error");
 	}
 
@@ -54,22 +54,22 @@ function webSocketConnectionChange(state){
 
 function webRtcConnectionChange(state){
 
-	if (state==WebrtcConnectingStatusEnum.CONNECTED) {
+	if (state==ConnectingStatusEnum.CONNECTED) {
 		$("#webRtcButton").html("WebRTC - connected");
 		$("#webRtcButton").prop("disabled",!true)
-	}else if (state==WebrtcConnectingStatusEnum.CONNECTING) {
+	}else if (state==ConnectingStatusEnum.CONNECTING) {
 		$("#webRtcButton").html("WebRTC - connecting");
 		$("#webRtcButton").prop("disabled",!false);
-	}else if (state==WebrtcConnectingStatusEnum.DISCONNECTING) {
+	}else if (state==ConnectingStatusEnum.DISCONNECTING) {
 		$("#webRtcButton").html("WebRTC - disconnecting");
 		$("#webRtcButton").prop("disabled",!false);
-	}else if (state==WebrtcConnectingStatusEnum.CHECKING) {
+	}else if (state==ConnectingStatusEnum.CHECKING) {
 		$("#webRtcButton").html("WebRTC - checking");
 		$("#webRtcButton").prop("disabled",!false);
-	}else if (state==WebrtcConnectingStatusEnum.DISCONNECTED) {
+	}else if (state==ConnectingStatusEnum.DISCONNECTED) {
 		$("#webRtcButton").html("WebRTC - disconected");
 		$("#webRtcButton").prop("disabled",!true);
-	}else if (state==WebrtcConnectingStatusEnum.FAILED) {
+	}else if (state==ConnectingStatusEnum.FAILED) {
 		$("#webRtcButton").html("WebRTC - failed");
 		$("#webRtcButton").prop("disabled",!true);
 	}
